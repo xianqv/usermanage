@@ -16,10 +16,10 @@ public interface UserService {
 
         /**
          * 登录方法
-         * @param user
+         * @param
          * @return
          */
-        UserBean login(UserBean user);
+        UserBean login(String username, String password);
 
         /**
          * 保存User

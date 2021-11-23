@@ -13,51 +13,88 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/jquery-2.1.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
+    <script>
+        function userlist(){
+            location.href="${pageContext.request.contextPath}/UserListServlet";
+        }
+    </script>
 </head>
 <body>
 <div class="container" style="width: 400px;">
     <h3 style="text-align: center;">修改联系人</h3>
-    <form action="" method="post">
+    <form action="${pageContext.request.contextPath}/UpdateUserServlet" method="post">
+        <!--  隐藏域 提交id-->
+        <input type="hidden" name="id" value="${user.id}">
         <div class="form-group">
             <label for="name">姓名：</label>
-            <input type="text" class="form-control" id="name" name="name"  readonly="readonly" placeholder="请输入姓名" />
+            <input type="text" class="form-control" id="name" name="name" value="${user.name}" readonly="readonly" placeholder="请输入姓名" />
         </div>
 
         <div class="form-group">
             <label>性别：</label>
-            <input type="radio" name="sex" value="男"  />男
-            <input type="radio" name="sex" value="女"  />女
+            <c:if test="${user.gender =='男'}">
+            <input type="radio" name="gender" value="男"  checked/>男
+            <input type="radio" name="gender" value="女"  />女
+            </c:if>
+            <c:if test="${user.gender =='女'}">
+                <input type="radio" name="gender" value="男"  />男
+                <input type="radio" name="gender" value="女" checked />女
+            </c:if>
         </div>
 
         <div class="form-group">
             <label for="age">年龄：</label>
-            <input type="text" class="form-control" id="age"  name="age" placeholder="请输入年龄" />
+            <input type="text" class="form-control" id="age" value="${user.age}" name="age" placeholder="请输入年龄" />
         </div>
 
         <div class="form-group">
             <label for="address">籍贯：</label>
+
             <select name="address" id="address" class="form-control" >
-                <option value="陕西">陕西</option>
-                <option value="北京">北京</option>
+            <c:if test="${user.address =='北京'}">
+                    <option value="广州">广州</option>
+                    <option value="北京" selected>北京</option>
+                    <option value="上海">上海</option>
+                    <option value="北京">深圳</option>
+                </select>
+            </c:if>
+            <c:if test="${user.address =='上海'}">
+                    <option value="广州">广州</option>
+                    <option value="北京" >北京</option>
+                    <option value="上海" selected>上海</option>
+                    <option value="北京">深圳</option>
+                </select>
+            </c:if>
+            <c:if test="${user.address =='广州'}">
+                <option value="广州" selected>广州</option>
+                <option value="北京" >北京</option>
                 <option value="上海">上海</option>
+                <option value="北京">深圳</option>
             </select>
+        </c:if> <c:if test="${user.address =='深圳'}">
+                <option value="广州">广州</option>
+                <option value="北京" >北京</option>
+                <option value="上海">上海</option>
+                <option value="深圳" selected>深圳</option>
+            </select>
+        </c:if>
+
         </div>
 
         <div class="form-group">
             <label for="qq">QQ：</label>
-            <input type="text" id="qq" class="form-control" name="qq" placeholder="请输入QQ号码"/>
+            <input type="text" id="qq" class="form-control" name="qq" value="${user.qq}" placeholder="请输入QQ号码"/>
         </div>
 
         <div class="form-group">
             <label for="email">Email：</label>
-            <input type="text" id="email" class="form-control" name="email" placeholder="请输入邮箱地址"/>
+            <input type="text" id="email" class="form-control" name="email" value="${user.email}" placeholder="请输入邮箱地址"/>
         </div>
 
         <div class="form-group" style="text-align: center">
             <input class="btn btn-primary" type="submit" value="提交" />
             <input class="btn btn-default" type="reset" value="重置" />
-            <input class="btn btn-default" type="button" value="返回"/>
+            <input class="btn btn-default" type="button"  onclick="userlist()"  value="返回"/>
         </div>
     </form>
 </div>

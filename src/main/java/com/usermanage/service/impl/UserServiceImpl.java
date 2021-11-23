@@ -22,12 +22,13 @@ public class UserServiceImpl implements UserService {
     /**
      * 登录方法
      *
-     * @param user
+     * @param
      * @return
      */
     @Override
-    public UserBean login(UserBean user) {
-        return null;
+    public UserBean login(String username, String password) {
+        UserBean userBean = userDao.findByUsernameAndPassword(username, password);
+        return userBean;
     }
 
     /**

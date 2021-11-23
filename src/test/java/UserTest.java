@@ -10,6 +10,6 @@ public class UserTest {
         UserDao userDao=new UserDaoImpl();
 
         //System.out.println( userDao.findByUsernameAndPassword("zhangsan","Password01!"));
-        System.out.println(userDao.findById(6));
+        System.out.println(userDao.findByUsernameAndPassword("zhang22san","password01!"));
     }
 }

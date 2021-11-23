@@ -39,4 +39,5 @@ public interface UserDao {
      * @param id
      */
     public void delUser(int id);
+
 }

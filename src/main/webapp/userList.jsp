@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; UTF-8" language="java" pageEncoding="UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <!-- 网页使用的语言 -->
 <html lang="zh-CN">
@@ -26,6 +26,13 @@
       text-align: center;
     }
   </style>
+  <script>
+    function  deleteUser(id){
+     if(confirm("确定删除该用户？")){
+        location.href="${pageContext.request.contextPath}/DeleteUserServlet?uid="+id;
+      }
+    }
+  </script>
 </head>
 <body>
 <div class="container">
@@ -45,18 +52,21 @@
     <c:forEach items="${users}" var="user" varStatus="s">
       <tr>
         <th><input type="checkbox" id="check_user" name="uid" value="${user.id}"></th>
-           <td>${user.name}</td>
+        <td>${s.count}</td>
+        <td>${user.name}</td>
         <td>${user.gender}</td>
         <td>${user.age}</td>
         <td>${user.address}</td>
         <td>${user.qq}</td>
         <td>${user.email}</td>
-        <td><a class="btn btn-default btn-sm" href="${pageContext.request.ContextPath}/FindUserServlet?uid=${user.id}">修改</a>&nbsp;<a class="btn btn-default btn-sm" href="">删除</a></td>
+        <td>
+          <a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/FindUserServlet?uid=${user.id}">修改</a>&nbsp;
+          <a class="btn btn-default btn-sm" href="javascript:deleteUser(${user.id});">删除</a></td>
       </tr>
     </c:forEach>
 
     <tr>
-      <td colspan="8" align="center"><a class="btn btn-primary" href="add.html">添加联系人</a></td>
+      <td colspan="8" align="center"><a class="btn btn-primary" href="${pageContext.request.contextPath}/adduser.jsp">添加联系人</a></td>
     </tr>
   </table>
 </div>
