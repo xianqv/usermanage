@@ -15,6 +15,14 @@
   <!-- 3. 导入bootstrap的js文件 -->
   <script src="js/bootstrap.min.js"></script>
   <script type="text/javascript">
+      //切换验证码
+      function refreshCode(){
+      //1.获取验证码图片对象
+      var vcode = document.getElementById("vcode");
+
+      //2.设置其src属性，加时间戳
+      vcode.src = "${pageContext.request.contextPath}/checkCodeServlet?time="+new Date().getTime();
+    }
   </script>
 </head>
 <body>
@@ -31,7 +39,13 @@
       <input type="password" name="password" class="form-control" id="password" placeholder="请输入密码"/>
     </div>
 
-
+    <div class="form-inline">
+      <label for="vcode">验证码：</label>
+      <input type="text" name="verifycode" class="form-control" id="verifycode" placeholder="请输入验证码" style="width: 120px;"/>
+      <a href="javascript:refreshCode();">
+        <img src="${pageContext.request.contextPath}/checkCodeServlet" title="看不清点击刷新" id="vcode"/>
+      </a>
+    </div>
     <hr/>
     <div class="form-group" style="text-align: center;">
       <input class="btn btn btn-primary" type="submit" value="登录">
@@ -43,7 +57,7 @@
     <button type="button" class="close" data-dismiss="alert" >
       <span>&times;</span>
     </button>
-    <strong>登录失败!</strong>
+    <strong>${login_msg}</strong>
   </div>
 </div>
 </body>

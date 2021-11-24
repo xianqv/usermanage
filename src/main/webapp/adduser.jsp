@@ -1,5 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ page pageEncoding="UTF-8" contentType="text/html; UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- HTML5文档-->
 <!DOCTYPE html>
 <!-- 网页使用的语言 -->
@@ -22,11 +22,16 @@
     <script src="js/jquery-2.1.0.min.js"></script>
     <!-- 3. 导入bootstrap的js文件 -->
     <script src="js/bootstrap.min.js"></script>
+    <script>
+        function userlist(){
+            location.href="${pageContext.request.contextPath}/UserListServlet";
+        }
+    </script>
 </head>
 <body>
 <div class="container">
     <center><h3>添加联系人页面</h3></center>
-    <form action="${pageContext.request.contextPath}/addUserServlet" method="post">
+    <form action="${pageContext.request.contextPath}/AddUserServlet" method="post">
         <div class="form-group">
             <label for="name">姓名：</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="请输入姓名">
@@ -46,9 +51,11 @@
         <div class="form-group">
             <label for="address">籍贯：</label>
             <select name="address" class="form-control" id="address">
-                <option value="陕西">陕西</option>
+                <option value="广州">广州</option>
                 <option value="北京">北京</option>
                 <option value="上海">上海</option>
+                <option value="深圳">深圳</option>
+
             </select>
         </div>
 
@@ -65,7 +72,7 @@
         <div class="form-group" style="text-align: center">
             <input class="btn btn-primary" type="submit" value="提交" />
             <input class="btn btn-default" type="reset" value="重置" />
-            <input class="btn btn-default" type="button" value="返回" />
+            <input class="btn btn-default" type="button" onclick="userlist()" value="返回" />
         </div>
     </form>
 </div>

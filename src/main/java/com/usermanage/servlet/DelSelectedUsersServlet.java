@@ -20,7 +20,12 @@ public class DelSelectedUsersServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        Map<String, String[]> ids = request.getParameterMap();
+        String[] ids=request.getParameterValues("uid");
+        for (int i = 0; i < ids.length; i++) {
+            System.out.println("seleced ids ："+ids[i]);
+        }
         UserService userService =new UserServiceImpl();
+        userService.delSelectedUser(ids);
+        response.sendRedirect(request.getContextPath()+"/UserListServlet");
     }
 }

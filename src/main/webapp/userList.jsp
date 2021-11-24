@@ -32,12 +32,58 @@
         location.href="${pageContext.request.contextPath}/DeleteUserServlet?uid="+id;
       }
     }
+
+    window.onload = function(){
+      //给删除选中按钮添加单击事件
+      document.getElementById("delSelected").onclick = function() {
+        if (confirm("您确定要删除选中条目吗？")) {
+
+          var flag = false;
+          //判断是否有选中条目
+          var cbs = document.getElementsByName("uid");
+          for (var i = 0; i < cbs.length; i++) {
+            if (cbs[i].checked) {
+              //有一个条目选中了
+              flag = true;
+              break;
+            }
+          }
+
+          if (flag) {//有条目被选中
+            //表单提交
+            document.getElementById("form").submit();
+          }
+
+        }
+      }
+
+      document.getElementById("check_user_all").onclick = function(){
+        //2.获取下边列表中所有的cb
+        var cbs = document.getElementsByName("uid");
+        //3.遍历
+        for (var i = 0; i < cbs.length; i++) {
+          //4.设置这些cbs[i]的checked状态 = check_user_all.checked
+          cbs[i].checked = this.checked;
+
+        }
+
+      }
+
+    }
+
   </script>
 </head>
 <body>
 <div class="container">
   <h3 style="text-align: center">用户信息列表</h3>
+  <div style="float: right;margin: 5px;">
+    <a class="btn btn-primary"href="${pageContext.request.contextPath}/adduser.jsp">添加联系人</a>
+    <a class="btn btn-primary" href="javascript:void(0);" id="delSelected">删除选中</a>
+  </div>
+
+  <form id="form" action="${pageContext.request.contextPath}/DelSelectedUsersServlet" method="post">
   <table border="1" class="table table-bordered table-hover">
+
     <tr class="success">
       <th><input type="checkbox" id="check_user_all"></th>
       <th>编号</th>
@@ -64,11 +110,8 @@
           <a class="btn btn-default btn-sm" href="javascript:deleteUser(${user.id});">删除</a></td>
       </tr>
     </c:forEach>
-
-    <tr>
-      <td colspan="8" align="center"><a class="btn btn-primary" href="${pageContext.request.contextPath}/adduser.jsp">添加联系人</a></td>
-    </tr>
   </table>
+  </form>
 </div>
 </body>
 </html>

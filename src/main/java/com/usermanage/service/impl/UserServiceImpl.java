@@ -79,6 +79,10 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void delSelectedUser(String[] ids) {
-
+        if (ids != null && ids.length > 0) {
+            for (int i = 0; i < ids.length; i++) {
+                userDao.delUser(Integer.parseInt(ids[i]));
+            }
+        }
     }
 }
