@@ -40,4 +40,22 @@ public interface UserDao {
      */
     public void delUser(int id);
 
+
+    /***
+     * 模糊查询
+     * 根据多个条件查询 返回总的结果记录数
+     * @param condition
+     * @return
+     */
+    public int findtotalcount(Map<String ,String []> condition);
+
+    /***
+     * 分页查询
+     * @param start
+     * @param rows
+     * @param condition
+     * @return
+     */
+    public List findByPage(int start,int rows,Map<String,String[]> condition);
+
 }

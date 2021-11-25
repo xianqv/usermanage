@@ -1,8 +1,10 @@
 package com.usermanage.service;
 
+import com.usermanage.domain.PageBean;
 import com.usermanage.domain.UserBean;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户管理的业务接口
@@ -51,5 +53,14 @@ public interface UserService {
          * @param ids
          */
         void delSelectedUser(String[] ids);
+
+        /**
+         * 分页条件查询
+         * @param _currentPage
+         * @param _rows
+         * @param condition
+         * @return
+         */
+        PageBean<UserBean> findUserByPage(String _currentPage, String _rows, Map<String, String[]> condition);
 
 }
