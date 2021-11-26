@@ -119,7 +119,7 @@
       <th>邮箱</th>
       <th>操作</th>
     </tr>
-    <c:forEach items="${users}" var="user" varStatus="s">
+    <c:forEach items="${pb.list}" var="user" varStatus="s">
       <tr>
         <th><input type="checkbox" id="check_user" name="uid" value="${user.id}"></th>
         <td>${s.count}</td>

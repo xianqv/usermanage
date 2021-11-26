@@ -19,10 +19,10 @@
   </script>
 </head>
 <body>
-  <div >${user.name},欢迎您</div>
+  <div ><h1>${user.name},欢迎您<h1></div>
   <div align="center">
     <a
-            href="${pageContext.request.contextPath}/UserListServlet" style="text-decoration:none;font-size:33px">查询所有用户信息
+            href="${pageContext.request.contextPath}/FindUserByPageServlet" style="text-decoration:none;font-size:33px">查询所有用户信息
     </a>
   </div>
 </body>
